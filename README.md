@@ -27,7 +27,8 @@ The main CompleteData.csv file has been divided up to monthly datasets to simula
 
 - Ingests the raw datasets into Delta tables, matched against an explicit schema.
 - Adds batch_id, ingestion_timestamp, source_file columns for auditing and data lineage.
-- No transformations applied to the data
+- No transformations applied to the data.
+- The data is partitioned according to batches.
 
 ### Silver Layer
 
