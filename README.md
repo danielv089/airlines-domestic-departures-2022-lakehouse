@@ -1,15 +1,16 @@
 # 2022 Airlines Departure Data Lakehouse
 
-A batch lakehouse built on 2022 US domestic airline departure data, implementing a Medallion architecture (bronze → silver → gold) with Delta Lake on Databricks.
+A batch lakehouse built on 2022 US domestic airline departure data, implementing a Medallion architecture with Delta Lake and orchestrated with Lakeflow on Databricks.
 
 ## 📌 Overview
 
 This project ingest the raw flight departure records from the landingzone and refines them to clea, analytics ready star schema. The final goal of this project is to support efficient querying, reporting, and analytics for airline departure operations and performance metrics.
 
 Key Features:
+- Real-world dataset with 7 million records. 
 - Dimensional database modelling (star schema).
 - Medallion Architecture (Bronze->Silver->Gold)
-- Incremental batch loading using merge to demostrate upserts
+- Incremental batch loading using merge to demonstrate upserts
 - Orchestrated as scheduled Lakeflow jobs
 - Delta Lake
 
@@ -17,7 +18,7 @@ Key Features:
 
 The project is using [2022 US Airlines Domestic Departure dataset ](https://www.kaggle.com/datasets/jl8771/2022-us-airlines-domestic-departure-data).
 
-The main CompleteData.csv file has been divide up to monthly datasets to simulate incremental data loading. Each monthly batch has been assigned to a batch_id (ex.: 2022-1) and I used this batch_id to orchestrate the pipeline. 
+The main CompleteData.csv file has been divided up to monthly datasets to simulate incremental data loading. Each monthly batch has been assigned to a batch_id (ex.: 2022-1) and I used this batch_id to orchestrate the pipeline. 
 
 ## 🧱 Architecture
 
@@ -37,12 +38,13 @@ The main CompleteData.csv file has been divide up to monthly datasets to simulat
 ### Gold Layer
 
 - Star schema optimized for analytics.
-    - Fact table -> fact_flights: one row per flight for metrics and foreing keys to each dimensions.
+    - Fact table -> fact_flights: one row per flight for metrics and foreign keys to each dimensions.
     - Dimension tables:
-        - dim_aircrafts -> Aircraft information separated from the main table.
-        - dim_airlines  -> Airlines information dimension table.
-        - dim_airports  ->
-
+        - dim_aircrafts    -> Aircraft information separated from the main table.
+        - dim_airlines     -> Airlines information dimension table.
+        - dim_airports     -> Airports information dimension table.
+        - dim_cancellation -> Cancellation information dimension table.
+        - dim_date         -> A custom date dimension table for the year 2022 for analytics and advanced date-based aggregations. 
 
 ## 🗃️ ERD Diagram
 
