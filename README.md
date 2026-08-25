@@ -4,14 +4,15 @@ A batch lakehouse built on 2022 US domestic airline departure data, implementing
 
 ## 📌 Overview
 
-This project ingest the raw flight departure records from the landingzone and refines them to clea, analytics ready star schema. The final goal of this project is to support efficient querying, reporting, and analytics for airline departure operations and performance metrics.
+This project ingests the raw flight departure records from the landing zone and refines them to a clean, analytics-ready star schema. The final goal of this project is to support efficient querying, reporting, and analytics for airline departure operations and performance metrics.
 
 Key Features:
-- Real-world dataset with 7 million records. 
-- Dimensional database modelling (star schema).
-- Medallion Architecture (Bronze->Silver->Gold)
-- Incremental batch loading using merge to demonstrate upserts
-- Orchestrated as scheduled Lakeflow jobs
+
+* Real-world dataset with 7 million records.
+* Dimensional database modelling (star schema).
+* Medallion Architecture (Bronze->Silver->Gold)
+* Incremental batch loading using merge to demonstrate upserts
+* Orchestrated as scheduled Lakeflow jobs
 - Delta Lake
 
 ## Data Source
@@ -38,15 +39,38 @@ The main CompleteData.csv file has been divided up to monthly datasets to simula
 ### Gold Layer
 
 - Star schema optimized for analytics.
-    - Fact table -> fact_flights: one row per flight for metrics and foreign keys to each dimensions.
-    - Dimension tables:
-        - dim_aircrafts    -> Aircraft information separated from the main table.
-        - dim_airlines     -> Airlines information dimension table.
-        - dim_airports     -> Airports information dimension table.
-        - dim_cancellation -> Cancellation information dimension table.
-        - dim_date         -> A custom date dimension table for the year 2022 for analytics and advanced date-based aggregations. 
+- Fact table -> fact_flights: one row per flight for metrics and foreign keys to each dimensions.
+- Dimension tables:
+  - dim_aircrafts    -> Aircraft information separated from the main table.
+  - dim_airlines     -> Airlines information dimension table.
+  - dim_airports     -> Airports information dimension table.
+  - dim_cancellation -> Cancellation information dimension table.
+  - dim_date         -> A custom date dimension table for the year 2022 for analytics and advanced date-based aggregations.
+
+## Lakeflow Orchestration
+
+Each layer contains separate notebooks that orchestrate the loading. I am also utilizing the dbutils.widget module makes it possible to pass through the batch_id in every notebook that makes it possible to process every batch dynamically. 
+
+- airlines_departures_etl                 -> Orchestrates the notebooks across the Medallion architecture.
+- incremental_airlines_departure_pipeline -> Orchestrates the incremental batch loading process.
+
+### Pipeline 1: airlines_departures_etl
+
+Main pipeline responsible for processing the data from the Bronze layer through to the Gold layer.
+
+
+
+### incremental_airlines_departure_pipeline
+
+The pipeline notebooks do the following tasks:
+- Identifies all the batches.
+- Identifies the processed and unprocessed batches. 
+- Schedules the next batch for processing.
+- Records and updates the batch processing data in the pipeline_control Delta Lake table.
+- Contains the first pipeline as a separate task.
 
 ## 🗃️ ERD Diagram
+ 
 
 
 ## 🧰 Tech Stack
