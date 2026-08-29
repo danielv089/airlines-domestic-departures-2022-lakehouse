@@ -59,9 +59,9 @@ Each layer contains separate notebooks that orchestrate the loading. I am also u
 
 Main pipeline responsible for processing the data from the Bronze layer through to the Gold layer.
 
+![pipeline_1](docs/images/pipeline_1.jpg)
 
-
-### incremental_airlines_departure_pipeline
+### Pipeline 2: incremental_airlines_departure_pipeline
 
 The pipeline notebooks do the following tasks:
 - Identifies all the batches.
