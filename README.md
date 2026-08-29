@@ -19,7 +19,7 @@ Key Features:
 
 The project is using [2022 US Airlines Domestic Departure dataset ](https://www.kaggle.com/datasets/jl8771/2022-us-airlines-domestic-departure-data).
 
-The main CompleteData.csv file has been divided up to monthly datasets to simulate incremental data loading. Each monthly batch has been assigned to a batch_id (ex.: 2022-1) and I used this batch_id to orchestrate the pipeline. 
+The main CompleteData.csv file has been divided into monthly datasets to simulate incremental data loading. Each monthly batch has been assigned to a batch_id (ex.: 2022-1), and I used this batch_id to orchestrate the pipeline. 
 
 ## 🧱 Architecture
 
@@ -69,6 +69,8 @@ The pipeline notebooks do the following tasks:
 - Schedules the next batch for processing.
 - Records and updates the batch processing data in the pipeline_control Delta Lake table.
 - Contains the first pipeline as a separate task.
+
+![pipeline_2](docs/images/pipeline_2.jpg)
 
 ## 🗃️ ERD Diagram
  
