@@ -74,7 +74,7 @@ The pipeline notebooks do the following tasks:
 
 ## 🗃️ ERD Diagram
  
-
+![erd](docs/images/erd.jpg)
 
 ## 🧰 Tech Stack
 
@@ -91,5 +91,11 @@ The pipeline notebooks do the following tasks:
 
 - Kaggle - 2022 US Airlines Domestic Departure Data
   https://www.kaggle.com/datasets/jl8771/2022-us-airlines-domestic-departure-data
+
+- Apache Spark Documentation
+  https://spark.apache.org/docs/latest/index.html
+
+- Databricks Documentation
+  https://docs.databricks.com/aws/en/
 
 ✅ This project uses only publicly available data for educational purposes.
