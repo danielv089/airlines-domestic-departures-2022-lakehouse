@@ -37,6 +37,8 @@ The main CompleteData.csv file has been divided into monthly datasets to simulat
 - Incremental data batch loading using MERGE.
 - Renames columns for consistency and clarity.
 
+During a data quality check of the completed_data table, I found that all related weather data is missing. Since active_weather was designed to join these columns, the null values meant that the weather dimension had no relationship to the main data table. Therefore, the active_weather table was excluded at the silver layer rather than processed further into the gold layer.
+
 ### Gold Layer
 
 - Star schema optimized for analytics.
@@ -72,6 +74,16 @@ The pipeline notebooks do the following tasks:
 
 ![pipeline_2](docs/images/pipeline_2.jpg)
 
+## 📈 Analytics and Dashboard
+
+A dedicated analytics [**analytics notebook**](/05_analytics/1_analytics.ipynb) with queries to support a Databricks SQL dashboard:
+- **Summary Metrics** — total flights, average departure delay, total cancellations
+- **Airport Performance** — monthly flight/cancellation/delay trends, busiest destination airports
+- **Carrier Metrics** — flights per carrier, running totals of flights and delay per carrier by month
+- **Aircraft Metrics** — top 10 busiest aircraft, fleet age classification (New / Mid-age / Older / Very Old, based on years since manufacture)
+
+![dashboard](docs/images/dashboard.jpg)
+
 ## 🗃️ ERD Diagram
  
 ![erd](docs/images/erd.jpg)
@@ -83,8 +95,9 @@ The pipeline notebooks do the following tasks:
 - **Delta Lake**
 - **SQL**
 
-
 ## 📁 Repository Structure
+
+
 
 
 ## 🔗 References
