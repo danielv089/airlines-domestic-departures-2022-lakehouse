@@ -97,7 +97,51 @@ A dedicated analytics [**analytics notebook**](/05_analytics/1_analytics.ipynb) 
 
 ## 📁 Repository Structure
 
+```bash
+├── 01_bronze
+│   ├── 00_setup.ipynb
+│   ├── 01_bronze_complete_data.ipynb
+│   ├── 02_bronze_active_weather.ipynb
+│   ├── 03_bronze_cancellation.ipynb
+│   ├── 04_bronze_stations.ipynb
+│   └── 05_bronze_carriers.ipynb
+├── 02_silver
+│   ├── 00_quality_check.ipynb
+│   ├── 01_silver_complete_data.ipynb
+│   ├── 02_silver_active_weather.ipynb
+│   ├── 03_silver_cancellation.ipynb
+│   ├── 04_silver_stations.ipynb
+│   └── 05_silver_carriers.ipynb
+├── 03_gold
+│   ├── 01_gold_fact_flights.ipynb
+│   ├── 02_gold_dim_cancellation.ipynb
+│   ├── 03_gold_dim_airports.ipynb
+│   ├── 04_gold_dim_carriers.ipynb
+│   ├── 05_gold_dim_date.ipynb
+│   ├── 06_gold_dim_aircrafts.ipynb
+│   └── 07_gold_tables_optimization.ipynb
+├── 04_pipeline_batch_scheduling
+│   ├── 01_pipeline_table.ipynb
+│   ├── 02_identify_batches.ipynb
+│   ├── 03_schedule_next.ipynb
+│   └── 04_complete.ipynb
+├── 05_analytics
+│   └── 1_analytics.ipynb
+├── LICENSE
+├── README.md
+├── config
+│   └── config.ipynb
+├── docs
+│   └── images
+│       ├── dashboard.jpg
+│       ├── erd.jpg
+│       ├── pipeline_1.jpg
+│       └── pipeline_2.jpg
+└── src
+    ├── quality_check.ipynb
+    └── schema_definitions.ipynb
 
+```
 
 
 ## 🔗 References
